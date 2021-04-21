@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>基于音乐知识图谱的智能搜索系统演示</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+<div style="padding: 100px 100px 10px;">
+    <form role="form">
+        <!--<input type="hidden" id="list" value="${list}">-->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input id="key" type="text" value="" class="form-control">
+                    <input id="hiddenText" type="text" style="display:none"/>
+                    <span class="input-group-btn">
+                        <button id="btn" class="btn btn-primary" type="button">搜索</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="res">
+            <table width="600" class="table">
+                <thead>
+                <tr>
+                    <th>歌名</th>
+                    <th>歌手</th>
+                    <th>标签</th>
+                </tr>
+                </thead>
+                <tbody id="result">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="page">
+            <input value="0" id="pageNum" hidden/>
+            <a id="prepage"><span id="spanPre">上一页</span></a> <a id="nextpage"><span id="spanNext">下一页</span></a>
+        </div>
+        <!--        <span id="spanFirst">首页</span> <span id="spanPre">上一页</span> <span id="spanNext">下一页</span> <span id="spanLast">尾页</span>-->
+        <!--        第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页-->
+        <p id="spanTotalNum"></p>
+        <p id="def_slot"></p>
+        <p id="undef_slot"></p>
+    </form>
+</div>
+<script type="text/javascript" src="js/search.js?version=1.0.0"></script>
+</body>
+</html>

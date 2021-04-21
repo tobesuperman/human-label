@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>歌曲标签查看</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div style="padding: 100px 100px 10px;">
+    <form role="form">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="input-group">
+                    <input type="hidden">
+                    <input type="text" id="search_id_text" value="{{ pre_song_id }}" class="form-control">
+                    <span class="input-group-btn">
+                        <button id="search_id" class="btn btn-primary" type="button">搜索歌曲编号</button>
+                    </span>
+
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="res">
+            <h3>[歌曲id]</h3><span id="songid" style="font-size:20px"></span>
+            <h3>[歌名]</h3><span id="songname" style="font-size:20px"></span>
+            <h3>[歌手]</h3><span id="actor" style="font-size:20px"></span>
+            <h3>[标签]</h3><span id="label" style="font-size:20px"></span>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <input id="add_label_text" type="text" value="" class="form-control">
+                        <span class="input-group-btn">
+                            <button id="add_label" class="btn btn-primary" type="button">增加歌曲常规标签</button>
+                        </span>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <table width="600" class="table">
+                <thead>
+                <tr>
+                    <th>常规标签</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="song_label">
+
+                </tbody>
+            </table>
+            <h3>[影视剧标签]</h3><span id="movie_label" style="font-size:20px"></span>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <input id="add_movie_label_text" type="text" value="" class="form-control">
+                        <span class="input-group-btn">
+                            <button id="add_movie_label" class="btn btn-primary" type="button">增加歌曲影视标签</button>
+                        </span>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <table width="600" class="table">
+                <thead>
+                <tr>
+                    <th>影视标签</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="song_movie_label">
+
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+<script src="js/jquery.min.js"></script>
+<!--<script src="{{ url_for('static',filename='js/song.js') }}"></script>-->
+<script type="text/javascript" src="js/song.js?version=1.0.0"></script>
+</body>
+</html>
