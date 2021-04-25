@@ -39,7 +39,7 @@ def song_label():
         song_id = int(request.args.get('songid'))
     else:
         song_id = ''
-    return render_template('song.html', pre_song_id=str(song_id))
+    return render_template('book.html', pre_song_id=str(song_id))
 
 
 @app.route('/get_label', methods=['GET'])
@@ -58,7 +58,8 @@ def get_label():
     else:
         search_word = ''
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         if search_word != '':
@@ -95,7 +96,8 @@ def add_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏要添加的标签名'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT count(*) FROM standard_label WHERE tagname = %s', add_tag)
@@ -128,7 +130,8 @@ def del_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏要删除的标签名'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         for url in settings.NEO4J_URLS:
@@ -154,7 +157,8 @@ def get_song_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏歌曲ID'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT id,title,actor,final_tag,final_tag_pro,movie_tag FROM multimodal_tag WHERE id = %s',
@@ -214,7 +218,8 @@ def add_song_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏歌曲标签'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT id FROM standard_label WHERE tagname = %s', song_tag)
@@ -282,7 +287,8 @@ def del_song_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏歌曲标签'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT id FROM standard_label WHERE tagname = %s', song_tag)
@@ -344,7 +350,8 @@ def add_movie_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏影视剧标签'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT id,title,actor,final_tag,movie_tag FROM multimodal_tag WHERE id = %s', song_id)
@@ -413,7 +420,8 @@ def del_movie_label():
     else:
         return jsonify({'status': 'failed', 'msg': '缺乏影视剧标签'})
     try:
-        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT, user=settings.MUSIC_MYSQL_USER,
+        db = pymysql.connect(host=settings.MUSIC_MYSQL_HOST, port=settings.MUSIC_MYSQL_PORT,
+                             user=settings.MUSIC_MYSQL_USER,
                              password=settings.MUSIC_MYSQL_PASSWORD, database=settings.MUSIC_MYSQL_DB)
         cursor = db.cursor()
         cursor.execute('SELECT id,title,actor,final_tag,movie_tag FROM multimodal_tag WHERE id = %s', song_id)

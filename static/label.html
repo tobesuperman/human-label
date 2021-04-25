@@ -14,17 +14,17 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input id="search_tag_text" type="text" value="" class="form-control">
-                    <input id="hidden_search_tag_text" type="text" style="display:none" />
+                    <input id="searchTagText" type="text" value="" class="form-control">
+                    <input id="hiddenSearchTagText" type="text" style="display:none"/>
                     <span class="input-group-btn">
-                        <button id="search_tag" class="btn btn-primary" type="button">搜索标签</button>
+                        <button id="searchTag" class="btn btn-primary" type="button">搜索标签</button>
                     </span>
                 </div>
                 <br>
                 <div class="input-group">
-                    <input id="add_tag_text" type="text" value="" class="form-control">
+                    <input id="addTagText" type="text" value="" class="form-control">
                     <span class="input-group-btn">
-                        <button id="add_tag" class="btn btn-primary" type="button">添加标签</button>
+                        <button id="addTag" class="btn btn-primary" type="button">添加标签</button>
                     </span>
                 </div>
             </div>
@@ -49,14 +49,14 @@
 
         <div id="page">
             <!--<input value="0" id="pageNum" hidden/> -->
-            <a id="prepage"><span id="spanPre">上一页</span></a> <a id="nextpage"><span id="spanNext">下一页</span></a>
-            <span>第<span value="0" id="pageNum"></span>页</span>
+            <a id="prePage"><span id="spanPre">上一页</span></a> <a id="nextPage"><span id="spanNext">下一页</span></a>
+            <span>第<span value="0" id="pageIndex"></span>页</span>
         </div>
         <!--        <span id="spanFirst">首页</span> <span id="spanPre">上一页</span> <span id="spanNext">下一页</span> <span id="spanLast">尾页</span>-->
         <!--        第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页-->
         <p id="spanTotalNum"></p>
-        <p id="def_slot"></p>
-        <p id="undef_slot"></p>
+        <p id="defSlot"></p>
+        <p id="undefSlot"></p>
     </form>
 </div>
 <script type="text/javascript" src="js/label.js?version=1.0.0"></script>

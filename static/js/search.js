@@ -1,7 +1,7 @@
 var pageSize = 8;
 var page = 1;
 var keyword = '';
-var last_search = null;
+var lastSearch = null;
 var data = null;
 var totNum = 0;
 
@@ -9,17 +9,17 @@ function request() {
     $("#result").empty();
     // $("#res").addClass("hidden");
     keyword = $("#key").val();
-    page = parseInt($("#pageNum").val());
-    if (last_search == keyword) {
+    page = parseInt($("#pageIndex").val());
+    if (lastSearch == keyword) {
     } else {
         page = 0;
         $("#pageNum").val(0)
     }
-    last_search = keyword;
+    lastSearch = keyword;
     $.ajax({
         type: "GET",
         url: './search_song?keyword='
-            + keyword + '&pagenum=' + page + '&pagesize=8',
+            + keyword + '&pageIndex=' + page + '&pageSize=8',
         dataType: "json",
         contentType: 'application/json;charset=UTF-8',
         success: function (r) {
@@ -31,21 +31,21 @@ function request() {
             var _html = '';
             for (var i = 0; i < data.length; i++) {
 
-                var song_id = data[i].id
-                var label_url = window.location.protocol + '//' + window.location.host + '/song_label?songid=' + song_id
-                //var music_storefilepath = data[i].music_storefilepath;
-                //var ring_storefilepath = data[i].ring_storefilepath;
-                //var buzz_storefilepath = data[i].buzz_storefilepath;
+                var bookId = data[i].id
+                var tagUrl = window.location.protocol + '//' + window.location.host + '/book_tag?bookId=' + bookId
+                //var musicStoreFilepath = data[i].music_storefilepath;
+                //var ringStoreFilepath = data[i].ring_storefilepath;
+                //var buzzStoreFilepath = data[i].buzz_storefilepath;
 
-                // console.log(ring_storefilepath)
+                // console.log(ringStoreFilepath)
 
                 /*var playUrl = "";
-                if(music_storefilepath!=""){
-                    playUrl =  music_storefilepath.split("|")[0];
-                }else if(ring_storefilepath != ""){
-                    playUrl = ring_storefilepath.split("|")[0];
+                if(musicStoreFilepath!=""){
+                    playUrl =  musicStoreFilepath.split("|")[0];
+                }else if(ringStoreFilepath != ""){
+                    playUrl = ringStoreFilepath.split("|")[0];
                 }else{
-                    playUrl = buzz_storefilepath.split("|")[0];
+                    playUrl = buzzStoreFilepath.split("|")[0];
                 }
 
                 console.log(playUrl);
@@ -56,19 +56,18 @@ function request() {
 
                 _html += '<tr class="active">' +
                     '<td>' + data[i].title + '</td>' +
-                    '<td>' + data[i].singer + '</td>' +
-                    '<td>' + '<a target="view_window" href="' + label_url + '">' + '标签信息' + '</a></td>' +
+                    '<td>' + data[i].singer + '</td>' + "<td><a target=\"view_window\" href=\"" + tagUrl + '">' + '标签信息' + '</a></td>' +
                     '</tr>'
             }
             $("#result").append(_html);
             var obj = document.getElementById("spanTotalNum");
             obj.innerText = "共" + r.Result.totalNum + "首";
 
-            var obj_def = document.getElementById("def_slot");
-            obj_def.innerText = "确定槽: " + JSON.stringify(r.Result.confirm_slot);
+            var defObj = document.getElementById("defSlot");
+            defObj.innerText = "确定槽: " + JSON.stringify(r.Result.confirm_slot);
 
-            var obj_undef = document.getElementById("undef_slot");
-            obj_undef.innerText = "非确定槽: " + JSON.stringify(r.Result.unconfirm_solt);
+            var undefObj = document.getElementById("undefSlot");
+            undefObj.innerText = "非确定槽: " + JSON.stringify(r.Result.unconfirm_solt);
         },
         error: function (xhr) {
             alert("网络异常")
@@ -89,23 +88,23 @@ $("#key").bind('keydown', function (event) {
 });
 
 
-$("#prepage").click(function () {
-    page = parseInt($("#pageNum").val());
+$("#prePage").click(function () {
+    page = parseInt($("#pageIndex").val());
     if (page <= 0) {
         alert("没有上一页了!");
     } else {
-        $("#pageNum").val(page - 1);
+        $("#pageIndex").val(page - 1);
         request();
     }
 
 });
 
-$("#nextpage").click(function () {
-    page = parseInt($("#pageNum").val());
+$("#nextPage").click(function () {
+    page = parseInt($("#pageIndex").val());
     if (pageSize * (page + 1) >= totNum) {
         alert("没有下一页了");
     } else {
-        $("#pageNum").val(page + 1);
+        $("#pageIndex").val(page + 1);
         request();
     }
 });
